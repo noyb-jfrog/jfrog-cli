@@ -17,10 +17,11 @@ jobs:
         JF_URL: ${{ secrets.ARTIFACTORY_URL }}
         JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_ACCESS_TOKEN }}
 
-       # This command uses an existing server configuration to the JFrog CLI   
+       # This command adds a new server configuration to the JFrog CLI   
     - run: |
-        export SERVER_ID="noyb"
-        jf c use $SERVER_ID 
+       export SERVER_ID="test"
+       jf c add $SERVER_ID --url=$URL --access-token=$ACCESS_TOKEN --interactive=false
+       
     - name: Connectivity test
       run: |
              # Ping the server
