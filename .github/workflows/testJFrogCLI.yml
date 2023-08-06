@@ -18,7 +18,7 @@ jobs:
         JF_URL: ${{ secrets.JF_URL }}
         # JFrog Platform access token
         JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+    - name: Connectivity test
     - run: |
-        #debuglevel
         export JFROG_CLI_LOG_LEVEL=DEBUG
         jf rt ping
