@@ -13,10 +13,7 @@ jobs:
       with:
         version: latest
       env:
-        # JFrog platform URL (for example https://noyb.jfrog.io) 
-        JF_URL: ${{ secrets.JF_URL }}
-        # JFrog Platform access token
-        JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+       JF_ENV_TOKEN: ${{ secrets.JF_SECRET_ENV_TOKEN }}
         
       # This action checks out the code from the repository
     - name: Checkout Code
@@ -25,5 +22,5 @@ jobs:
     - name: Connectivity test
       run: |
         export JFROG_CLI_LOG_LEVEL=DEBUG
-        #jf rt ping
+        jf rt ping
         jf rt curl /api/system/version
