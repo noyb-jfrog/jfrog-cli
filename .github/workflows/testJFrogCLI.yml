@@ -10,27 +10,13 @@ jobs:
     # This action checks out the code from the repository
     - name: Checkout Code
       uses: actions/checkout@v2
+      
 
-    # This action sets up the JFrog CLI with the Artifactory URL and access token     
     - uses: jfrog/setup-jfrog-cli@v3
       env:
-        JF_URL: ${{ secrets.ARTIFACTORY_URL }}
-        JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_ACCESS_TOKEN }}
-
-       # This command adds a new server configuration to the JFrog CLI   
+        # JFrog platform url (for example: https://noyb.jfrog.io) 
+        JF_URL: ${{ secrets.JF_URL }}
+        # JFrog Platform access token
+        JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
     - run: |
-       export SERVER_ID="test"
-       jf c add $SERVER_ID --url=$URL --access-token=$ACCESS_TOKEN --interactive=false
-       
-    - name: Connectivity test
-      run: |
-             # Ping the server
-             jf rt ping
-           
-    # This action creates a new test file and uploads it to Artifactory   
-  #  - name: Push file to Artifactory
-    #  run: |
-     #        echo "test file " > test.txt
-       #      #export PATH_TO_DIRECTORY="name/version/dates"
-        #     jf rt upload "test.txt" generic-local-github/test.txt
-
+        jf rt ping
