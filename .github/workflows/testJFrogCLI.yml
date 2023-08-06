@@ -25,9 +25,7 @@ jobs:
     - name: Connectivity test
       run: |
              # Ping the server
-             #jf rt ping
-             echo "$JF_URL"
-             echo "$JF_ACCESS_TOKEN"
+             jf rt ping
            
     # This action creates a new test file and uploads it to Artifactory   
   #  - name: Push file to Artifactory
