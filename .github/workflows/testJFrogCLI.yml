@@ -13,7 +13,11 @@ jobs:
       with:
         version: latest
       env:
-       JF_ENV_TOKEN: ${{ secrets.JF_SECRET_ENV_TOKEN }}
+          # JFrog platform URL (for example: https://acme.jfrog.io) 
+          JF_URL: ${{ secrets.JF_URL }}
+          # JFrog Platform access token
+          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+          #JF_ENV_TOKEN: ${{ secrets.JF_SECRET_ENV_TOKEN }}
         
       # This action checks out the code from the repository
     - name: Checkout Code
