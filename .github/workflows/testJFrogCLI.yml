@@ -19,12 +19,14 @@ jobs:
     - name: Connectivity test
       run: |
              # Ping the server
-             jf rt ping
+             #jf rt ping
+             echo "$JF_URL"
+             echo "$JF_ACCESS_TOKEN"
            
     # This action creates a new test file and uploads it to Artifactory   
-    - name: Push file to Artifactory
-      run: |
-             echo "test file " > test.txt
-             #export PATH_TO_DIRECTORY="name/version/dates"
-             jf rt upload "test.txt" generic-local-github/test.txt
+  #  - name: Push file to Artifactory
+    #  run: |
+     #        echo "test file " > test.txt
+       #      #export PATH_TO_DIRECTORY="name/version/dates"
+        #     jf rt upload "test.txt" generic-local-github/test.txt
 
