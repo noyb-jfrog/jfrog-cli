@@ -1,1 +1,31 @@
+name: "JFrog CLI Github Example"
+
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: amd64/golang:latest
+  
+   steps:
+   # This action checks out the code from the repository
+   - name: Checkout Code
+     uses: actions/checkout@v2
+
+   # This action sets up the JFrog CLI with the Artifactory URL and access token     
+   - uses: jfrog/setup-jfrog-cli@v3
+     env:
+       JF_URL: ${{ secrets.ARTIFACTORY_URL }}
+       JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_ACCESS_TOKEN }}
+   - name: Connectivity test
+      run: |
+            # Ping the server
+            jf rt ping
+           
+   # This action creates a new test file and uploads it to Artifactory   
+   - name: Push file to Artifactory
+     run: |
+          echo "test file " > test.txt
+       #export PATH_TO_DIRECTORY="name/version/dates"
+      
+          jf rt upload "test.txt" generic-local-github/test.txt
 
