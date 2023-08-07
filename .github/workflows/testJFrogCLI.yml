@@ -13,7 +13,7 @@ jobs:
       with:
         version: latest
       env:
-          # JFrog platform URL (for example: https://acme.jfrog.io) 
+          # JFrog platform URL (for example: https://noyb.jfrog.io) 
           JF_URL: ${{ secrets.JF_URL }}
           # JFrog Platform access token
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
@@ -28,3 +28,29 @@ jobs:
         export JFROG_CLI_LOG_LEVEL=DEBUG
         jf rt ping
         jf rt curl /api/system/version
+        
+    - name: Upload DEB file to Artifactory
+      run: |
+        jf rt u --deb=bionic/main/all /Users/noyb/Downloads/carbon-relay-ng_0.9.3-1_amd64.deb debian-virtual-cli/pool/main/c/carbon/carbon-relay-ng_0.9.3-1_amd64.deb
+    
+    - name: Sleep for 60s
+      uses: juliangruber/sleep-action@v2.0.0
+      with:
+        time: 60s
+    
+    - name: Re-calculate index to the virtual repository
+    #re-calculate index to the virtual repository before attempting to install the packages, you may use the Calculate Debian Repository Metadata REST API call:
+      run: |
+        jf rt curl /api/deb/reindex/debian-virtual-cli
+    
+    - name: Sleep for 60s
+      uses: juliangruber/sleep-action@v2.0.0
+      with:
+        time: 60s
+        
+    - name: Download DEB file from Artifactory
+      run: |
+        jf rt dl "debian-virtual-cli/pool/main/c/carbon/carbon-relay-ng_0.9.3-1_amd64.deb" /Users/noyb/Downloads/260357/
+
+
+
