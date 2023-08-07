@@ -43,7 +43,7 @@ jobs:
     - name: Re-calculate index to the virtual repository
     #re-calculate index to the virtual repository before attempting to install the packages, you may use the Calculate Debian Repository Metadata REST API call:
       run: |
-        jf rt curl /api/deb/reindex/debian-virtual-cli
+        jf rt curl -X POST /api/deb/reindex/debian-virtual-cli
     
     - name: Sleep for 60s
       uses: juliangruber/sleep-action@v2.0.0
