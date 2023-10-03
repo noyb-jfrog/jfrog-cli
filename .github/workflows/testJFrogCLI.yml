@@ -31,7 +31,6 @@ jobs:
         
     - name: Docker login
       run: |
-       
          docker login $JF_URL
 
 
