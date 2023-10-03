@@ -35,8 +35,8 @@ jobs:
     #In case of a login failure, the command will not be executed.
       run: |
             jf docker pull noyb.jfrog.io/docker-virtual-cli/ubuntu:latest
-            #jf docker tag noyb.jfrog.io/docker-virtual-cli/ubuntu:latest noyb.jfrog.io/docker-local-cli/ubuntu:latest
-            #jf docker push noyb.jfrog.io/docker-local-cli/ubuntu:latest
+            jf docker tag noyb.jfrog.io/docker-virtual-cli/ubuntu:latest noyb.jfrog.io/docker-local-cli/ubuntu:latest
+            jf docker push noyb.jfrog.io/docker-local-cli/ubuntu:latest
 
 
 
