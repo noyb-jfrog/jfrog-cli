@@ -8,7 +8,7 @@ jobs:
   
     steps:
     - name: setup JFrog CLI
-      #this step uses github cli action
+      ##this step uses github cli action
       uses: jfrog/setup-jfrog-cli@v3
       with:
         version: latest
