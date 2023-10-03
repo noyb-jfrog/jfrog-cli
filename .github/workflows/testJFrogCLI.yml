@@ -21,7 +21,7 @@ jobs:
         
       # This action checks out the code from the repository
     - name: Checkout Code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - name: Run docker version
       run: docker --version
     - name: Connectivity test
