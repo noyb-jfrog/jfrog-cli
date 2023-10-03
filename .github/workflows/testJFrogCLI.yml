@@ -25,13 +25,18 @@ jobs:
       
     - name: Connectivity test
       run: |
+        #Increasing log level to DEBUG
         export JFROG_CLI_LOG_LEVEL=DEBUG
         jf rt ping
         jf rt curl /api/system/version
         
-    - name: Docker login
+    - name: Docker Push/Pull
+    #Note: When running the docker-pull and docker-push commands, the CLI will first attempt to log in to the docker registry. 
+    #In case of a login failure, the command will not be executed.
       run: |
-         docker login $JF_URL
+            jfrog docker pull noyb.jfrog.io/docker-virtual-cli/ubuntu:latest
+            jfrog docker tag noyb.jfrog.io/docker-virtual-cli/ubuntu:latest noyb.jfrog.io/docker-local-cli/ubuntu:latest
+            jfrog docker push noyb.jfrog.io/docker-local-cli/ubuntu:latest
 
 
 
