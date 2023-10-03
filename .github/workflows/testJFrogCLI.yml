@@ -29,31 +29,10 @@ jobs:
         jf rt ping
         jf rt curl /api/system/version
         
-    - name: Upload DEB file to Artifactory
+    - name: Docker login
       run: |
        
-        #jf rt u --deb=bionic/main/all /Users/noyb/Downloads/ripgrep_13.0.0-2.1_amd64.deb debian-virtual-cli/pool/main/c/carbon/ripgrep_13.0.0-2.1_amd64.deb
-        #jf rt u --deb=bionic/main/all "/Users/noyb/Downloads/carbon-relay-ng_0.9.3-1_amd64.deb" debian-virtual-cli/pool/main/c/carbon/carbon-relay-ng_0.9.3-1_amd64.deb
-    
-    - name: Sleep for 60s
-      uses: juliangruber/sleep-action@v2.0.0
-      with:
-        time: 60s
-    
-    - name: Re-calculate index to the virtual repository
-    #re-calculate index to the virtual repository before attempting to install the packages, you may use the Calculate Debian Repository Metadata REST API call:
-      run: |
-        jf rt curl -X POST /api/deb/reindex/debian-virtual-cli
-    
-    - name: Sleep for 60s
-      uses: juliangruber/sleep-action@v2.0.0
-      with:
-        time: 60s
-        
-    - name: Download DEB file from Artifactory
-      run: |
-        #jf rt dl "debian-virtual-cli/pool/main/c/carbon/carbon-relay-ng_0.9.3-1_amd64.deb" /Users/noyb/Downloads/260357/
-        jf rt dl "debian-virtual-cli/pool/main/c/carbon/ripgrep_13.0.0-2.1_amd64.deb" /Users/noyb/Downloads/260357/
+         docker login $JF_URL
 
 
 
