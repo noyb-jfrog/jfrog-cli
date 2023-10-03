@@ -34,10 +34,11 @@ jobs:
     #Note: When running the docker-pull and docker-push commands, the CLI will first attempt to log in to the docker registry. 
     #In case of a login failure, the command will not be executed.
       run: |
-        jf docker pull noyb.jfrog.io/docker-virtual-cli/hello-world:latest
-        jf docker pull noyb.jfrog.io/docker-virtual-cli/ubuntu:latest
-        jf docker tag noyb.jfrog.io/docker-virtual-cli/ubuntu:latest noyb.jfrog.io/docker-local-cli/ubuntu:latest
-        jf docker push noyb.jfrog.io/docker-local-cli/ubuntu:latest
+       jf docker pull noyb.jfrog.io/docker-virtual-cli/hello-world:latest
+        #jf docker pull noyb.jfrog.io/docker-virtual-cli/hello-world:latest
+        #jf docker pull noyb.jfrog.io/docker-virtual-cli/ubuntu:latest
+        #jf docker tag noyb.jfrog.io/docker-virtual-cli/ubuntu:latest noyb.jfrog.io/docker-local-cli/ubuntu:latest
+        #jf docker push noyb.jfrog.io/docker-local-cli/ubuntu:latest
 
 
 
